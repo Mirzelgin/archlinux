@@ -38,7 +38,7 @@ mount -o defaults,relatime,discard,ssd,nodev,nosuid,subvol=__current/home /dev/s
 
 == Install Arch Linux ==
 
-pacstrap /mnt/btrfs-current base base-devel
+pacstrap /mnt/btrfs-current base base-devel linux linux-firmware vim
 genfstab -U /mnt/btrfs-current >> /mnt/btrfs-current/etc/fstab
 nano /mnt/btrfs-current/etc/fstab
 
@@ -74,7 +74,6 @@ passwd
 
 pacman -S grub-bios
 grub-install --target=i386-pc --recheck /dev/sda
-nano /etc/default/grub
 grub-mkconfig -o /boot/grub/grub.cfg
 
 == Unmount and reboot ==
@@ -85,18 +84,4 @@ umount /mnt/btrfs-current/home
 umount /mnt/btrfs-current
 umount /mnt/btrfs-root
 
-reboot
 
-== Post installation configuration ==
-
-=== Snapshot ===
-
-echo `date "+%Y%m%d-%H%M%S"` > /run/btrfs-root/__current/ROOT/SNAPSHOT
-echo "Fresh install" >> /run/btrfs-root/__current/ROOT/SNAPSHOT
-btrfs subvolume snapshot -r /run/btrfs-root/__current/ROOT /run/btrfs-root/__snapshot/ROOT@`head -n 1 /run/btrfs-root/__current/ROOT/SNAPSHOT`
-cd /run/btrfs-root/__snapshot/
-ln -s ROOT@`cat /run/btrfs-root/__current/ROOT/SNAPSHOT` fresh-install
-rm /run/btrfs-root/__current/ROOT/SNAPSHOT 
-
-==== Software Installation ===
-visudo
