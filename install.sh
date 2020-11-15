@@ -17,14 +17,11 @@ timedatectl set-ntp true
 # Разметка диска (-z обнуление таблицы разделов)
 cfdisk -z /dev/sda
 
-## Swap раздел
-mkswap /dev/sda1
-
 ## root раздел
-mkfs.btrfs -L "root" /dev/sda<цифра>
+mkfs.btrfs -L "root" /dev/sda1
 
 # Монтируем раздел
-mount /dev/sda2 /mnt
+mount /dev/sda1 /mnt
 
 # Создаём два подтома под корень и домашние каталоги
 btrfs subvolume create /mnt/@
@@ -34,11 +31,11 @@ btrfs subvolume create /mnt/@home
 umount /mnt
 
 # Монтируем корневой раздел (c включенным TRIM)
-mount -o subvol=@,compress=zstd discard=async /dev/sda2 /mnt
+mount -o subvol=@,compress=zstd discard=async /dev/sda1 /mnt
 
 # Создаём директорию home и монтируем в неё subvolume @home
 mkdir /mnt/home
-mount -o subvol=@home,compress=zstd discard=async /dev/sda2 /mnt/home
+mount -o subvol=@home,compress=zstd discard=async /dev/sda1 /mnt/home
 
 # Обновляем зеркала
 ## Создаём резервную копию списка зеркал
@@ -54,7 +51,7 @@ reflector --verbose  -l 5 -p https --sort rate --save /etc/pacman.d/mirrorlist
 pacman -Syyu
 
 # Установка системы
-pacstrap /mnt base base-devel linux linux-firmware vim
+pacstrap /mnt base base-devel linux linux-firmware vim btrfs-progs grub-btrfs efibootmgr
 
 # Генерируем fstab
 genfstab -U /mnt >> /mnt/etc/fstab
@@ -85,6 +82,7 @@ echo 'KEYMAP=ru' >> /etc/vconsole.conf
 echo 'FONT=cyr-sun16' >> /etc/vconsole.conf
 
 # Initramfs
+vim /etc/mkinitcpio.conf
 # В файле /etc/mkinitcpio.conf необходимо отредактировать строку
 # HOOKS=(base udev autodetect modconf block filesystems keyboard fsck)
 # и убрать из неё fsck
@@ -94,5 +92,4 @@ mkinitcpio -P
 passwd
 
 # Установка загрузчика
-pacman -Syy grub-btrfs efibootmgr
 grub-install /dev/sda
