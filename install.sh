@@ -70,7 +70,7 @@ pacstrap /mnt base base-devel linux linux-firmware linux-headers btrfs-progs gru
 genfstab -U /mnt >> /mnt/etc/fstab
 
 # Chroot
-arch-chroot /mnt
+arch-chroot /mnt /bin/bash
 
 # Имя компьютера
 echo "arch-mir" > /etc/hostname
