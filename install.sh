@@ -64,7 +64,7 @@ reflector --verbose  -l 5 -p https --sort rate --save /etc/pacman.d/mirrorlist
 pacman -Syyu
 
 # Установка системы
-pacstrap /mnt base base-devel linux linux-firmware linux-headers btrfs-progs grub grub-btrfs efibootmgr vim
+pacstrap /mnt base base-devel linux linux-firmware linux-headers btrfs-progs grub grub-btrfs efibootmgr vim networkmanager network-manager-applet wireless_tools wpa_supplicant dialog os-prober mtools reflector
 
 # Генерируем fstab
 genfstab -U /mnt >> /mnt/etc/fstab
@@ -96,8 +96,6 @@ echo 'FONT=cyr-sun16' >> /etc/vconsole.conf
 
 # Пароль root
 passwd
-
-pacman -Sy networkmanager network-manager-applet wireless_tools wpa_supplicant dialog os-prober mtools reflector
 
 # Установка загрузчика
 grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
