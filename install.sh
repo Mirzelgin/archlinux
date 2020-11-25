@@ -69,5 +69,8 @@ pacstrap /mnt base base-devel linux linux-firmware linux-headers btrfs-progs gru
 # Генерируем fstab
 genfstab -U /mnt >> /mnt/etc/fstab
 
+# Копируем второй скрипт в систему
+cp ./install2.sh /mnt
+
 # Chroot
-arch-chroot /mnt /bin/bash
+arch-chroot /mnt sh install2.sh
