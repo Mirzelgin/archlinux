@@ -47,7 +47,9 @@ btrfs subvolume create /mnt/@snapshots
 umount /mnt
 
 # Монтируем корневой раздел (c включенным TRIM)
-mount -o noatime,compress=zstd,subvol=@ discard=async $dev'3' /mnt
+mount -o noatime,compress=zstd,subvol=@ $dev'3' /mnt
+
+## mount -o noatime,compress=zstd,subvol=@ discard=async $dev'3' /mnt
 
 # Создаём директории home, var, .snapshots и монтируем соответствуюущие subvolume
 mkdir -p /mnt/{boot,home,var,.snapshots}
@@ -56,9 +58,9 @@ mount -o noatime,compress=zstd,subvol=@home $dev'3' /mnt/home
 mount -o noatime,compress=zstd,subvol=@var $dev'3' /mnt/var
 mount -o noatime,compress=zstd,subvol=@snapshots $dev'3' /mnt/.snapshots
 
-#mount -o noatime,compress=zstd,subvol=@home discard=async $dev'3' /mnt/home
-#mount -o noatime,compress=zstd,subvol=@var discard=async $dev'3' /mnt/var
-#mount -o noatime,compress=zstd,subvol=@snapshots discard=async $dev'3' /mnt/.snapshots
+## mount -o noatime,compress=zstd,subvol=@home discard=async $dev'3' /mnt/home
+## mount -o noatime,compress=zstd,subvol=@var discard=async $dev'3' /mnt/var
+## mount -o noatime,compress=zstd,subvol=@snapshots discard=async $dev'3' /mnt/.snapshots
 
 # Обновляем зеркала
 ## Создаём резервную копию списка зеркал
