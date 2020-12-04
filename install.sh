@@ -15,6 +15,12 @@ timedatectl set-ntp true
 # Устанавливаем утилиты для работы с btrfs
 pacman -Sy btrfs-progs
 
+#### Создание файловой системы ####
+# Таблица разделов
+# EFI 500M
+# swap 2G
+# btrfs 
+
 # Разметка диска (-z обнуление таблицы разделов)
 cfdisk -z $dev
 
@@ -46,9 +52,13 @@ mount -o noatime,compress=zstd,subvol=@ discard=async $dev'3' /mnt
 # Создаём директории home, var, .snapshots и монтируем соответствуюущие subvolume
 mkdir -p /mnt/{boot,home,var,.snapshots}
 mount $dev'1' /mnt/boot
-mount -o noatime,compress=zstd,subvol=@home discard=async $dev'3' /mnt/home
-mount -o noatime,compress=zstd,subvol=@var discard=async $dev'3' /mnt/var
-mount -o noatime,compress=zstd,subvol=@snapshots discard=async $dev'3' /mnt/.snapshots
+mount -o noatime,compress=zstd,subvol=@home $dev'3' /mnt/home
+mount -o noatime,compress=zstd,subvol=@var $dev'3' /mnt/var
+mount -o noatime,compress=zstd,subvol=@snapshots $dev'3' /mnt/.snapshots
+
+#mount -o noatime,compress=zstd,subvol=@home discard=async $dev'3' /mnt/home
+#mount -o noatime,compress=zstd,subvol=@var discard=async $dev'3' /mnt/var
+#mount -o noatime,compress=zstd,subvol=@snapshots discard=async $dev'3' /mnt/.snapshots
 
 # Обновляем зеркала
 ## Создаём резервную копию списка зеркал
