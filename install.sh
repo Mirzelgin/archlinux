@@ -25,7 +25,7 @@ pacman -Sy btrfs-progs
 cfdisk -z $dev
 
 ## efi раздел
-mkfs.fat -F32 -f $dev'1'
+mkfs.fat -F32 $dev'1'
 
 ## swap раздел
 mkswap $dev'2'
