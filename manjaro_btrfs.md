@@ -8,14 +8,17 @@
 
 ## Подготовка диска
 Установка будет производиться в системе с UEFI поэтому размечаем диск в соответствии со следующей таблицей:
+
 | Путь      | Тип              | Размер            | Описание                |
 |-----------|------------------|-------------------|-------------------------|
 | /dev/sdX1 | EFI              | 512 - 1024 МБ     | Загрузочные раздел UEFI |
 | /dev/sdX2 | swap             | 2 ГБ - размер ОЗУ | SWAP раздел             |
 | /dev/sdX3 | Linux filesystem | оставшееся        | Раздел под систему      |
-Разметку диска будем выполнять при помощи утилиты `fdisk`. Д
+
+Разметку диска будем выполнять при помощи утилиты `fdisk`. 
+
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTgyNjIyNzQ2MiwtNjA2MjkxMTA5LC0yMD
-MzMjUyMzc3XX0=
+eyJoaXN0b3J5IjpbMTQ0NDQyMjU2OCwxODI2MjI3NDYyLC02MD
+YyOTExMDksLTIwMzMyNTIzNzddfQ==
 -->
