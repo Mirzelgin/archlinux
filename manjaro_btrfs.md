@@ -13,11 +13,9 @@
 | /dev/sdX1 | EFI              | 512 - 1024 МБ     | Загрузочные раздел UEFI |
 | /dev/sdX2 | swap             | 2 ГБ - размер ОЗУ | SWAP раздел             |
 | /dev/sdX3 | Linux filesystem | оставшееся        | Раздел под систему      |
-Разметку диска будем выполнять при помощи утилиты 
-
-> fdisk
+Разметку диска будем выполнять при помощи утилиты `fdisk`. Д
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTExNTE3OTQzOTIsLTYwNjI5MTEwOSwtMj
-AzMzI1MjM3N119
+eyJoaXN0b3J5IjpbMTgyNjIyNzQ2MiwtNjA2MjkxMTA5LC0yMD
+MzMjUyMzc3XX0=
 -->
