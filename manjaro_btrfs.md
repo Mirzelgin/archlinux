@@ -8,10 +8,12 @@
 
 ## Подготовка диска
 Установка будет производиться в системе с UEFI поэтому размечаем дист в соответствии со следующей таблицей:
-| Таблица GPT |
-|--|--|
-| /dev/sdX1 | EFI | 
+|
+| Таблица GPT | | |
+|--|--|--|
+| /dev/sdX1 | EFI | Загрузочные раздел UEFI
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTU4MjI4MDcxNiwtMjAzMzI1MjM3N119
+eyJoaXN0b3J5IjpbLTE4NTY5MzY0NjgsLTIwMzMyNTIzNzddfQ
+==
 -->
