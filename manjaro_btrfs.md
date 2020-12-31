@@ -9,10 +9,10 @@
 ## Подготовка диска
 Установка будет производиться в системе с UEFI поэтому размечаем диск в соответствии со следующей таблицей:
 | Путь | Тип | Описание|
-|--|--|--|
-| /dev/sdX1 | EFI | Загрузочные раздел UEFI |
-|
+|-----------|------|-------------------------|
+| /dev/sdX1 | EFI  | Загрузочные раздел UEFI |
+| /dev/sdX2 | swap | SWAP раздел  
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbODQxNTc5ODAyLC0yMDMzMjUyMzc3XX0=
+eyJoaXN0b3J5IjpbLTM2MjEwODU1MywtMjAzMzI1MjM3N119
 -->
